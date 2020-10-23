@@ -33,7 +33,7 @@ app.post("/register", (request, response) => { // регистрация пол�
  console.log('no login ');
  response.send('no login ')
 }
-
+ 
 })
 
 app.post("/authentication", (request, response) => { // проверяем есть ли введеныые данные пользователем при регистрации , в массиве
