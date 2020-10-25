@@ -14,8 +14,7 @@ let users = [
     }
 ];
 
-app.post("/register", (request, response) => { // регистрация пользователя с предварительной проверкой на наличие такого же логина 
-
+app.post("/register", (request, response) => { 
     if(request.body.username && request.body.password)
     {
     if (users.find(it => it.username === request.body.username)) {
@@ -36,7 +35,7 @@ app.post("/register", (request, response) => { // регистрация пол�
  
 })
 
-app.post("/authentication", (request, response) => { // проверяем есть ли введеныые данные пользователем при регистрации , в массиве
+app.post("/authentication", (request, response) => {
 
     if (users.map(it => it.username).includes(request.body.username) && users.map(it => it.password).includes(request.body.password)) {
         response.send(`user ${request.body.username} authenticated succsessfully`);
@@ -58,7 +57,7 @@ app.put("/useradd", (request, response) => {
     // // request.body = new_user_query
 
 
-    if (users.find(it => it.username === new_user_query.username)) { //добавление нового юзера передавая ник в квери с предварительной проверкой на наличие такого же логина (+генерация ранд. пароля)
+    if (users.find(it => it.username === new_user_query.username)) {
         response.send(`user ${request.body.username} already exists`);
         console.log(`user ${request.body.username} already exists`);
     }
@@ -72,7 +71,7 @@ app.put("/useradd", (request, response) => {
     }
 })
 
-app.delete("/userdelete", (request, response) => { // удаление юзера по нику , с предварительной проверкой на зарегестрированность 
+app.delete("/userdelete", (request, response) => {
 
     const user_delete = request.body
 
@@ -89,7 +88,7 @@ app.delete("/userdelete", (request, response) => { // удаление юзер�
 })
 
 
-app.patch("/userpatch", (request, response) => { //замена данных юзера , находя его по логину , с предварительно проверкой на зарегестрированность
+app.patch("/userpatch", (request, response) => {
 
     let user_pre_patch = request.body[0]
 
